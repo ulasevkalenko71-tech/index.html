@@ -1,0 +1,150 @@
+Ниже — готовый одностраничный сайт салона красоты **BEATY** в бордово-белой гамме с элементами японского минимализма. В нём есть:
+
+- адаптивный дизайн;
+- описание услуг;
+- блок мастеров;
+- форма записи;
+- выбор услуги, даты и времени;
+- подтверждение записи без перезагрузки страницы;
+- японские декоративные элементы.
+
+Сохраните код в файл `index.html` и откройте его в браузере.
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>BEATY — салон красоты</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --burgundy: #691d2c;
+      --dark-burgundy: #40121d;
+      --light-burgundy: #8d3d4c;
+      --cream: #faf7f2;
+      --white: #ffffff;
+      --beige: #eee5dc;
+      --text: #2f2021;
+      --muted: #806e6d;
+      --border: #e1d4d0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: "Montserrat", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto 55px;
+      text-align: center;
+    }
+
+    .section-title span {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--burgundy);
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .section-title h2 {
+      color: var(--dark-burgundy);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 6vw, 70px);
+      font-weight: 500;
+      line-height: 0.95;
+    }
+
+    .section-title p {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 28px;
+      border: 1px solid var(--burgundy);
+      background: var(--burgundy);
+      color: var(--white);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--dark-burgundy);
+      border-color: var(--dark-burgundy);
+      transform: translateY(-2px);
+    }
+
+    .btn-light {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,.7);
+    }
+
+    .btn-light:hover {
+      background: var(--white);
+      color: var(--burgundy);
+    }
+
+    /* Навигация */
+    .header {
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 25px 0;
+      color: var(--white);
+    }
+
+    .

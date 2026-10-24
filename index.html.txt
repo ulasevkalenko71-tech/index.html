@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEATY · салон красоты в японском стиле</title>
+    <!-- Google Fonts: японский минимализм + элегантность -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* СБРОС И БАЗОВЫЕ НАСТРОЙКИ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Zen Maru Gothic', 'Noto Serif JP', sans-serif;
+            color: #3e2b2b;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* БОРДОВАЯ ПАЛИТРА + БЕЛЫЙ */
+        :root {
+            --bordeaux: #6d1f2b;
+            --bordeaux-dark: #4a141c;
+            --bordeaux-light: #a14b5a;
+            --white: #ffffff;
+            --off-white: #fef9f7;
+            --gray-soft: #f2e9e6;
+            --shadow-sm: 0 8px 20px rgba(109, 31, 43, 0.08);
+            --shadow-hover: 0 15px 30px rgba(109, 31, 43, 0.15);
+        }
+
+        /* ЯПОНСКИЙ ФОН: лёгкие круги, как суми-э */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 40%, rgba(109, 31, 43, 0.03) 0%, transparent 30%),
+                              radial-gradient(circle at 90% 80%, rgba(109, 31, 43, 0.04) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        /* ШАПКА */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 10px;
+            border-bottom: 2px solid var(--bordeaux);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--bordeaux);
+            letter-spacing: 4px;
+            line-height: 1;
+            text-shadow: 2px 2px 0 rgba(109, 31, 43, 0.1);
+        }
+
+        .logo span {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--bordeaux-light);
+            display: block;
+            letter-spacing: 8px;
+            margin-top: 6px;
+        }
+
+        .tagline {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.1rem;
+            color: var(--bordeaux-dark);
+            font-weight: 300;
+            border-left: 3px solid var(--bordeaux-light);
+            padding-left: 20px;
+        }
+
+        /* ЗАГОЛОВКИ */
+        h1, h2, h3 {
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 600;
+            color: var(--bordeaux);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: "•";
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--bordeaux-light);
+            font-size: 2rem;
+            opacity: 0.6;
+        }
+
+        /* ОСОБЕННОСТИ — КАРТОЧКИ */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .feature-item {
+            flex: 1 1 180px;
+            background: var(--off-white);
+            padding: 20px 15px;
+            border-radius: 0 30px 0 30px;
+            box-shadow: var(--shadow-sm);
+            border-left: 6px solid var(--bordeaux);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            background: var(--white);
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--bordeaux);
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: #5a4a4a;
+        }
+
+        /* СЕТКА УСЛУГ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0 60px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px 0 20px 0;
+            box-shadow: var(--shadow-sm);
+            padding: 25px 20px 20px;
+            border-top: 6px solid var(--bordeaux);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: "✿";
+            position: absolute;
+            bottom: 5px;
+            right: 15px;
+            font-size: 4rem;
+            color: var(--bordeaux);
+            opacity: 0.05;
+            font-family: serif;
+            pointer-events: none;
+        }
+
+        .service-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-6px);
+        }
+
+        .service-icon {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            color: var(--bordeaux-light);
+        }
+
+        .service-card h3 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            color: var(--bordeaux-dark);
+        }
+
+        .service-desc {
+            font-size: 1rem;
+            color: #4e3e3e;
+            margin-bottom: 18px;
+            flex-grow: 1;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .service-price {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--bordeaux);
+            margin-bottom: 15px;
+            border-top: 1px dashed var(--bordeaux-light);
+            padding-top: 12px;
+        }
+
+        .service-price small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #7a5a5a;
+            margin-left: 5px;
+        }
+
+        .btn-book {
+            background: var(--bordeaux);
+            color: var(--white);
+            border: none;
+            padding: 14px 20px;
+            font-size: 1rem;
+            font-family: 'Zen Maru Gothic', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-radius: 40px 0 40px 0;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-transform: uppercase;
+            border: 1px solid var(--bordeaux);
+            box-shadow: 0 4px 8px rgba(109, 31, 43, 0.2);
+        }
+
+        .btn-book:hover {
+            background: var(--white);
+            color: var(--bordeaux);
+            border-radius: 0 40px 0 40px;
+            box-shadow: 0 6px 16px rgba(109, 31, 43, 0.25);
+        }
+
+        /* ФОРМА ЗАПИСИ */
+        .booking-section {
+            background: var(--gray-soft);
+            padding: 45px 35px;
+            border-radius: 50px 0 50px 0;
+            margin: 60px 0 50px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(109, 31, 43, 0.2);
+            position: relative;
+        }
+
+        .booking-section h2 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+
+        .booking-subhead {
+            font-size: 1.1rem;
+            color: var(--bordeaux-dark);
+            margin-bottom: 35px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .booking-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--bordeaux);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 14px 16px;
+            font-size: 1rem;
+            font-family: 'Zen Maru Gothic', sans-serif;
+            border: 2px solid #e3d6d2;
+            background: var(--white);
+            border-radius: 30px 0 30px 0;
+            outline: none;
+            transition: 0.2s;
+            color: #3e2b2b;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--bordeaux);
+            box-shadow: 0 0 0 4px rgba(109, 31, 43, 0.1);
+            background: var(--white);
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236d1f2b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 18px;
+        }
+
+        .btn-submit {
+            background: var(--bordeaux);
+            color: var(--white);
+            border: none;
+            padding: 16px 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Noto Serif JP', serif;
+            letter-spacing: 2px;
+            border-radius: 40px 0 40px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            border: 1px solid var(--bordeaux);
+            margin-top: 10px;
+            width: 100%;
+            box-shadow: 0 8px 16px rgba(109, 31, 43, 0.2);
+        }
+
+        .btn-submit:hover {
+            background: var(--bordeaux-dark);
+            border-radius: 0 40px 0 40px;
+            transform: scale(1.01);
+        }
+
+        /* СООБЩЕНИЕ ОБ УСПЕХЕ */
+        .form-message {
+            margin-top: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--bordeaux);
+            text-align: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            border: 1px dashed var(--bordeaux-light);
+            display: none;
+        }
+
+        .form-message.show {
+            display: block;
+        }
+
+        /* ПОДВАЛ */
+        .footer {
+            margin-top: 70px;
+            padding: 30px 0 15px;
+            border-top: 2px solid var(--bordeaux);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: var(--bordeaux-dark);
+            font-size: 0.95rem;
+        }
+
+        .footer .jp-quote {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.3rem;
+            color: var(--bordeaux-light);
+            letter-spacing: 2px;
+        }
+
+        .footer a {
+            color: var(--bordeaux);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--bordeaux-light);
+        }
+
+        .footer a:hover {
+            color: var(--bordeaux-dark);
+            border-bottom-style: solid;
+        }
+
+        /* АДАПТИВ */
+        @media (max-width: 700px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .logo {
+                font-size: 2.2rem;
+            }
+            .tagline {
+                border-left: none;
+                padding-left: 0;
+                font-size: 1rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .booking-section {
+                padding: 30px 20px;
+                border-radius: 30px 0 30px 0;
+            }
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+            .btn-submit {
+                margin-top: 0;
+            }
+        }
+
+        /* ДЕКОР */
+        .sakura-divider {
+            text-align: center;
+            color: var(--bordeaux-light);
+            font-size: 1.5rem;
+            letter-spacing: 12px;
+            margin: 15px 0;
+            opacity: 0.5;
+            font-family: serif;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="logo">
+            BEATY
+            <span>美</span>
+        </div>
+        <div class="tagline">
+            красота в японском стиле · гармония и утончённость
+        </div>
+    </header>
+
+    <!-- ФИЛОСОФИЯ / ОСОБЕННОСТИ -->
+    <section class="features">
+        <div class="feature-item">
+            <h3>Икигай</h3>
+            <p>Каждая процедура — маленькое искусство, наполненное смыслом.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Мацури</h3>
+            <p>Праздник для кожи и души — ритуалы с натуральными маслами.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Ваби-саби</h3>
+            <p>Красота несовершенства и естественности в каждой детали.</p>
+        </div>
+    </section>
+
+    <!-- ЗАГОЛОВОК УСЛУГ -->
+    <h2>Услуги салона</h2>
+
+    <!-- СЕТКА УСЛУГ (КАРТОЧКИ С ОПИСАНИЕМ) -->
+    <div class="services-grid" id="servicesGrid">
+        <!-- карточки генерируются JS (но можно и статично, для наглядности оставим с описанием) -->
+        <!-- Однако для гибкости и демонстрации создадим их через JS чуть ниже, 
+             но также пропишем статично для SEO и скорости — смешанный подход -->
+    </div>
+
+    <!-- ФОРМА ЗАПИСИ -->
+    <section class="booking-section" id="booking">
+        <h2>Запись на процедуру</h2>
+        <div class="booking-subhead">выберите услугу — мы свяжемся с вами для подтверждения</div>
+
+        <form class="booking-form" id="bookingForm">
+            <div class="form-group">
+                <label for="name">Ваше имя</label>
+                <input type="text" id="name" placeholder="Анна" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" placeholder="+7 (999) 123-45-67" required>
+            </div>
+            <div class="form-group">
+                <label for="serviceSelect">Услуга</label>
+                <select id="serviceSelect" required>
+                    <!-- опции заполним через JS -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Дата и время</label>
+                <input type="datetime-local" id="date" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-submit">Записаться</button>
+            </div>
+        </form>
+        <div class="form-message" id="formMessage"></div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer class="footer">
+        <div>© BEATY · салон красоты · Токио–Москва</div>
+        <div class="jp-quote">一期一会 · одна встреча — единственная</div>
+        <div><a href="#">Instagram</a> · <a href="#">Telegram</a></div>
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // СПИСОК УСЛУГ С ОПИСАНИЕМ, ЦЕНОЙ И ИКОНКОЙ
+        const services = [
+            {
+                id: 'facial',
+                name: 'Фейс-ритуал «Цуки»',
+                desc: 'Глубокое увлажнение с саке-экстрактом и зелёным чаем. Восстанавливает сияние кожи, сужает поры и наполняет энергией. Идеально для уставшей кожи.',
+                price: '4 800 ₽',
+                icon: '🌸'
+            },
+            {
+                id: 'massage',
+                name: 'Массаж «Кобо-до»',
+                desc: 'Японский точечный массаж с аромамаслами юдзу и бамбуковыми палочками. Снимает напряжение, улучшает лимфоток и возвращает лёгкость.',
+                price: '5 500 ₽',
+                icon: '🎋'
+            },
+            {
+                id: 'body',
+                name: 'Обёртывание «Момидзи»',
+                desc: 'Антицеллюлитное обёртывание с экстрактом красного клёна и морскими водорослями. Упругость, тонус и нежный аромат осени.',
+                price: '6 200 ₽',
+                icon: '🍁'
+            },
+            {
+                id: 'manicure',
+                name: 'Маникюр «Сакура»',
+                desc: 'Аппаратный маникюр + покрытие гель-лаком с дизайном в японском стиле. Стойкость до 4 недель, уход за кутикулой маслом камелии.',
+                price: '3 300 ₽',
+                icon: '💅'
+            },
+            {
+                id: 'hair',
+                name: 'Уход для волос «Кэми»',
+                desc: 'Кератиновое восстановление с протеинами шёлка и рисовой водой. Гладкость, блеск и защита от укладки. Включает массаж головы.',
+                price: '7 000 ₽',
+                icon: '🌿'
+            },
+            {
+                id: 'brows',
+                name: 'Архитектура бровей «Суми»',
+                desc: 'Коррекция формы, окрашивание хной и ламинирование. Естественная выразительность в духе японской минималистичной графики.',
+                price: '2 900 ₽',
+                icon: '🖌️'
+            }
+        ];
+
+        // 1. ОТРИСОВКА КАРТОЧЕК УСЛУГ
+        const grid = document.getElementById('servicesGrid');
+        if (grid) {
+            services.forEach(service => {
+                const card = document.createElement('div');
+                card.className = 'service-card';
+                card.innerHTML = `
+                    <div class="service-icon">${service.icon}</div>
+                    <h3>${service.name}</h3>
+                    <p class="service-desc">${service.desc}</p>
+                    <div class="service-price">${service.price} <small>/ сеанс</small></div>
+                    <button class="btn-book" data-service-id="${service.id}" data-service-name="${service.name}">Записаться</button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 2. ЗАПОЛНЕНИЕ ВЫПАДАЮЩЕГО СПИСКА В ФОРМЕ
+        const select = document.getElementById('serviceSelect');
+        if (select) {
+            // Очищаем на всякий случай
+            select.innerHTML = '';
+            services.forEach(service => {
+                const option = document.createElement('option');
+                option.value = service.id;
+                option.textContent = `${service.name} — ${service.price}`;
+                select.appendChild(option);
+            });
+        }
+
+        // 3. ОБРАБОТКА КНОПОК "ЗАПИСАТЬСЯ" НА КАРТОЧКАХ -> ПРОКРУТКА К ФОРМЕ И ВЫБОР УСЛУГИ
+        document.querySelectorAll('.btn-book').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const serviceId = btn.dataset.serviceId;
+                const serviceName = btn.dataset.serviceName;
+                if (select && serviceId) {
+                    select.value = serviceId;
+                }
+                // Прокрутка к форме
+                document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+                // Небольшая подсветка выбранной услуги (опционально)
+                select.style.transition = '0.2s';
+                select.style.borderColor = '#a14b5a';
+                select.style.backgroundColor = '#fef3f0';
+                setTimeout(() => {
+                    select.style.borderColor = '#e3d6d2';
+                    select.style.backgroundColor = '#ffffff';
+                }, 800);
+            });
+        });
+
+        // 4. ОБРАБОТКА ОТПРАВКИ ФОРМЫ
+        const form = document.getElementById('bookingForm');
+        const messageDiv = document.getElementById('formMessage');
+
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const serviceId = select.value;
+                const dateTime = document.getElementById('date').value;
+
+                if (!name || !phone || !serviceId || !dateTime) {
+                    messageDiv.textContent = 'Пожалуйста, заполните все поля.';
+                    messageDiv.classList.add('show');
+                    messageDiv.style.color = '#b3414a';
+                    return;
+                }
+
+                // Находим название услуги
+                const selectedOption = select.options[select.selectedIndex];
+                const serviceText = selectedOption ? selectedOption.textContent : '';
+
+                // Формируем сообщение (имитация успешной записи)
+                const formattedDate = new Date(dateTime).toLocaleString('ru-RU', {
+                    day: 'numeric',
+                    month: 'long',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                messageDiv.innerHTML = `✨ Спасибо, ${name}! Вы записаны на «${serviceText.split(' — ')[0]}»<br> на ${formattedDate}. Мы позвоним по номеру ${phone} для подтверждения.`;
+                messageDiv.classList.add('show');
+                messageDiv.style.color = '#6d1f2b';
+
+                // Очищаем поля (кроме имени/телефона — можно оставить, но лучше очистить всё)
+                form.reset();
+                // Восстанавливаем выбранную услугу в select? нет, сброс делает первую опцию.
+                // Но для удобства снова установим первую (или можно оставить)
+                // Однако если нужно, чтобы select не сбрасывался — закомментируем reset.
+                // По логике сбросим всё:
+                // form.reset(); — уже выполнен, select вернётся к первой опции.
+                // Очистим сообщение через 8 секунд
+                setTimeout(() => {
+                    messageDiv.classList.remove('show');
+                }, 8000);
+            });
+        }
+
+        // 5. УСТАНОВКА МИНИМАЛЬНОЙ ДАТЫ (СЕГОДНЯ) ДЛЯ ПОЛЯ ДАТЫ
+        const dateInput = document.getElementById('date');
+        if (dateInput) {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+            dateInput.min = minDateTime;
+            // Значение по умолчанию — завтра в это же время + 1 день
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tYear = tomorrow.getFullYear();
+            const tMonth = String(tomorrow.getMonth() + 1).padStart(2, '0');
+            const tDay = String(tomorrow.getDate()).padStart(2, '0');
+            const tHours = String(tomorrow.getHours()).padStart(2, '0');
+            const tMinutes = String(tomorrow.getMinutes()).padStart(2, '0');
+            dateInput.value = `${tYear}-${tMonth}-${tDay}T${tHours}:${tMinutes}`;
+        }
+    })();
+</script>
+</body>
+</html>
